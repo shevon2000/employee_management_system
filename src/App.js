@@ -1,20 +1,28 @@
 import './App.css';
 import Employee from './components/Employee';
+import {useState} from 'react';
 
 function App() {
-
-  console.log('we are about to list employees');
+  
+  //let role = 'dev';
+  const [role, setRole] = useState('dev');
   const showEmployees = true;
 
   return (
     <div className="App">
-      {console.log('inside the return')}
       {showEmployees ?
         <>
-          <Employee />
-          <Employee />
-          <Employee />
-          <Employee />
+          <input 
+            type="text" 
+            onChange={(e) => {
+              console.log(e.target.value);
+              //role = e.target.value;
+              setRole(e.target.value);
+            }}
+          />
+
+          <Employee name="Shevon" role="Intern" />
+          <Employee name="Jaden" role={role} />
           <Employee />
         </>
       :
@@ -38,5 +46,16 @@ export default App;
 
   component nesting
     inside App() component we have Employee components, and they donnot need to know about the parent component
+  -------------------------------------------------------------------------------------------------------------
 
-  */
+  without using states, target value is displayed on the console
+    but it doesn't update on Employee component(role)
+  -------------------------------------------------------------------------------------------------------------
+
+  structure of using useState
+    const [variable name, variable prefix with set] = useState('any default value');
+  -------------------------------------------------------------------------------------------------------------
+
+  never assign avalue to a variable directly,
+    always go through set_variable (setRole)
+    */
